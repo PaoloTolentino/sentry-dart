@@ -178,7 +178,9 @@ class SentryDevice {
         model: data['model'],
         modelId: data['model_id'],
         arch: data['arch'],
-        batteryLevel: data['battery_level'],
+        batteryLevel: data['battery_level'] is int
+            ? (data['battery_level'] as int).toDouble()
+            : data['battery_level'],
         orientation: data['orientation'] == 'portrait'
             ? SentryOrientation.portrait
             : data['orientation'] == 'landscape'
